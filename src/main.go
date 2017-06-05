@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/joshwget/strato/src/cmd/add"
+	"github.com/joshwget/strato/src/cmd/build"
 	"github.com/joshwget/strato/src/cmd/extract"
 	"github.com/joshwget/strato/src/cmd/index"
 	"github.com/joshwget/strato/src/cmd/inspect"
@@ -31,6 +32,25 @@ func main() {
 				cli.StringFlag{
 					Name:  "dir",
 					Value: "/",
+				},
+			},
+		},
+		{
+			Name:            "build",
+			HideHelp:        true,
+			SkipFlagParsing: true,
+			Action:          build.Action,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name: "d",
+				},
+				cli.StringFlag{
+					Name:  "f",
+					Value: ".",
+				},
+				cli.StringFlag{
+					Name:  "o",
+					Value: "./package.tar.gz",
 				},
 			},
 		},

@@ -24,11 +24,6 @@ for i in $BASE/*; do
         ${i}/prebuild.sh
     fi
 
-    if dapper -d --build -f ${i}/Dockerfile -- -t package ${i}; then
-        ./bin/strato extract ${i} ./dist
-    elif [ "$?" != "42" ]; then
-        exit 1
-    else
-        echo "Skipping ${i}"
-    fi
+    docker build -f ${i}/Dockerfile -t package ${i}
+    ./bin/strato extract ${i} ./dist
 done
